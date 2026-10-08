@@ -1,0 +1,16 @@
+{
+  "invoice_id": "INV-2024-001",
+  "company": "Acme Corp",
+  "vendor": "TechSupplies Ltd",
+  "issue_date": "2024-09-15",
+  "due_date": "2024-10-15",
+  "amount": 14500.00,
+  "currency": "USD",
+  "line_items": [
+    { "description": "Cloud Storage Subscription (Annual)", "qty": 1, "unit_price": 9500.00, "total": 9500.00 },
+    { "description": "Premium Support Plan", "qty": 1, "unit_price": 3000.00, "total": 3000.00 },
+    { "description": "API Access (10k calls/day)", "qty": 1, "unit_price": 2000.00, "total": 2000.00 }
+  ],
+  "status": "unpaid",
+  "notes": "Net 30 payment terms. Wire transfer preferred."
+}

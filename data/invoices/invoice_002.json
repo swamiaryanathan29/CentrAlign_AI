@@ -1,0 +1,16 @@
+{
+  "invoice_id": "INV-2024-002",
+  "company": "GlobalTech Inc",
+  "vendor": "OfficeWorld",
+  "issue_date": "2024-09-20",
+  "due_date": "2024-10-20",
+  "amount": 3275.50,
+  "currency": "USD",
+  "line_items": [
+    { "description": "Standing Desks (x5)", "qty": 5, "unit_price": 450.00, "total": 2250.00 },
+    { "description": "Ergonomic Chairs (x5)", "qty": 5, "unit_price": 185.00, "total": 925.00 },
+    { "description": "Monitor Arms (x5)", "qty": 5, "unit_price": 20.10, "total": 100.50 }
+  ],
+  "status": "unpaid",
+  "notes": "Delivery within 5 business days."
+}
