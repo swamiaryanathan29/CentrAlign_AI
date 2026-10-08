@@ -12,6 +12,38 @@ from langchain_core.tools import tool
 ERP_BASE = os.getenv("ERP_BASE_URL", "http://localhost:8001")
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "data", "invoices")
 
+
+def _get_erp_candidates():
+    candidates = []
+    env_url = os.getenv("ERP_BASE_URL", "").strip()
+    if env_url:
+        candidates.append(env_url)
+    port = os.getenv("PORT", "8000")
+    # Single-port cloud deployment (mounted at /erp)
+    candidates.append(f"http://127.0.0.1:{port}/erp")
+    # Local dedicated simulator process
+    candidates.append("http://localhost:8001")
+    candidates.append("http://127.0.0.1:8000/erp")
+    return list(dict.fromkeys(candidates))
+
+
+def _erp_request(method: str, path: str, **kwargs):
+    candidates = _get_erp_candidates()
+    last_err = None
+    for base in candidates:
+        url = f"{base.rstrip('/')}/{path.lstrip('/')}"
+        try:
+            resp = httpx.request(method, url, timeout=10.0, **kwargs)
+            if resp.status_code < 500:
+                return resp
+        except Exception as e:
+            last_err = e
+            continue
+    if last_err:
+        raise last_err
+    raise RuntimeError("No ERP endpoints available")
+
+
 # ─────────────────────────────────────────────
 # TOOL 1: List available invoices
 # ─────────────────────────────────────────────
@@ -99,8 +131,9 @@ def enter_invoice_into_erp(
         JSON with the created ERP record ID and status.
     """
     try:
-        resp = httpx.post(
-            f"{ERP_BASE}/payables",
+        resp = _erp_request(
+            "POST",
+            "payables",
             json={
                 "invoice_id": invoice_id,
                 "vendor": vendor,
@@ -110,7 +143,6 @@ def enter_invoice_into_erp(
                 "due_date": due_date,
                 "notes": notes,
             },
-            timeout=10.0,
         )
         resp.raise_for_status()
         return json.dumps(resp.json(), indent=2)
@@ -136,7 +168,7 @@ def verify_erp_entry(record_id: str) -> str:
         Full payable record JSON, or an error if not found.
     """
     try:
-        resp = httpx.get(f"{ERP_BASE}/payables/{record_id}", timeout=10.0)
+        resp = _erp_request("GET", f"payables/{record_id}")
         resp.raise_for_status()
         return json.dumps(resp.json(), indent=2)
     except httpx.HTTPStatusError as e:
@@ -158,7 +190,7 @@ def list_erp_payables() -> str:
         JSON list of all payables with their status.
     """
     try:
-        resp = httpx.get(f"{ERP_BASE}/payables", timeout=10.0)
+        resp = _erp_request("GET", "payables")
         resp.raise_for_status()
         return json.dumps(resp.json(), indent=2)
     except Exception as e:
@@ -182,10 +214,10 @@ def update_payable_status(record_id: str, status: str) -> str:
         Updated record JSON.
     """
     try:
-        resp = httpx.patch(
-            f"{ERP_BASE}/payables/{record_id}",
+        resp = _erp_request(
+            "PATCH",
+            f"payables/{record_id}",
             json={"status": status, "updated_by": "AI Agent"},
-            timeout=10.0,
         )
         resp.raise_for_status()
         return json.dumps(resp.json(), indent=2)

@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from backend.routers.agent_router import router as agent_router
+from backend.erp_sim.erp_app import erp_app
 
 app = FastAPI(title="CentrAlign AI Worker", version="1.0.0")
 
@@ -27,8 +28,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount agent API FIRST (before static catch-all)
+# Mount agent API
 app.include_router(agent_router)
+
+# Mount ERP simulator under /erp (enables single-port deployment on Render/cloud)
+app.mount("/erp", erp_app)
 
 # Serve frontend — mount at root so relative asset URLs (style.css, app.js) resolve
 frontend_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
@@ -48,4 +52,5 @@ else:
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run("backend.main:app", host="0.0.0.0", port=port, reload=True)

@@ -1029,7 +1029,13 @@ async function openErpModal() {
   const body = document.getElementById('modal-body');
   body.innerHTML = `<div style="text-align:center;padding:28px;font-size:.8rem;color:var(--c-text-3)">Loading ERP records…</div>`;
   try {
-    const r = await fetch('http://localhost:8001/payables');
+    let r;
+    try {
+      r = await fetch('/erp/payables');
+      if (!r.ok) throw new Error();
+    } catch {
+      r = await fetch('http://localhost:8001/payables');
+    }
     const d = await r.json();
     if (!d.payables.length) {
       body.innerHTML = `<div style="text-align:center;padding:28px;font-size:.8rem;color:var(--c-text-3)">No payable records yet.<br>Run an invoice task to populate the ERP.</div>`;
