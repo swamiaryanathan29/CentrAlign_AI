@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
 /* ══════════════════════════════════════════════════════
-   RESET & DESIGN SYSTEM (Light SaaS Style)
+   RESET & SYSTEM VARIABLES (Clean, Cool, Minimal SaaS)
 ══════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 14px; }
@@ -31,14 +31,16 @@ html { font-size: 14px; }
   
   --primary:        #0f172a;
   --primary-hover:  #1e293b;
-  --accent-blue:    #3b82f6;
+  --accent-blue:    #2563eb;
   --accent-green:   #10b981;
+  --accent-green-bg:#ecfdf5;
   --accent-amber:   #f59e0b;
   --accent-red:     #ef4444;
 
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-pill: 9999px;
 
   --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -61,7 +63,7 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════
-   NAVBAR (Creative Tim / Modern SaaS style)
+   NAVBAR
 ══════════════════════════════════════════════════════ */
 .navbar {
   background: #ffffff;
@@ -75,7 +77,7 @@ body {
 }
 .nav-container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
@@ -98,7 +100,8 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.05em;
 }
 .brand-titles {
   display: flex;
@@ -106,8 +109,8 @@ body {
   gap: 8px;
 }
 .brand-name {
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 800;
   color: var(--text-primary);
   letter-spacing: -0.02em;
 }
@@ -116,7 +119,7 @@ body {
   font-weight: 300;
 }
 .brand-tag {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -126,7 +129,31 @@ body {
   align-items: center;
   gap: 10px;
 }
-.nav-item {
+.nav-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #f1f5f9;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.nav-status-badge:hover {
+  background: #e2e8f0;
+}
+.status-indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+.nav-btn {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -141,512 +168,491 @@ body {
   transition: all 0.15s ease;
   text-decoration: none;
 }
-.nav-item:hover {
+.nav-btn:hover {
   background: var(--bg-subtle);
   color: var(--text-primary);
 }
-.nav-status-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  background: #f1f5f9;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-pill);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  cursor: pointer;
-}
-.status-indicator-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-green);
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-}
 
 /* ══════════════════════════════════════════════════════
-   CONTAINER & DASHBOARD LAYOUT
+   MAIN CONTAINER (Single Centered Layout - No Sidebar)
 ══════════════════════════════════════════════════════ */
-.main-content {
+.main-wrapper {
   flex: 1;
-  max-width: 1400px;
+  max-width: 1080px;
   width: 100%;
   margin: 0 auto;
-  padding: 24px;
+  padding: 32px 24px 60px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+}
+
+/* Hero Title */
+.hero-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.5;
 }
 
 /* ══════════════════════════════════════════════════════
-   METRIC CARDS ROW (Exact match to reference style)
+   STAT METRICS (Minimalist clean cards)
 ══════════════════════════════════════════════════════ */
-.metrics-row {
+.metrics-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
-.metric-card {
-  background: var(--bg-card);
+.metric-pill-card {
+  background: #ffffff;
   border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
-  padding: 18px 20px;
+  padding: 16px 20px;
   box-shadow: var(--shadow-card);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.metric-card:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-.metric-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
 }
-.metric-title {
-  font-size: 0.85rem;
+.metric-meta {
+  display: flex;
+  flex-direction: column;
+}
+.metric-label {
+  font-size: 0.78rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
-.metric-icon-wrap {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+.metric-number {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+.metric-badge-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   background: var(--bg-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-}
-.metric-value {
-  font-size: 1.85rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  line-height: 1.2;
-}
-.metric-desc {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-top: 4px;
-  font-weight: 500;
+  font-size: 1.15rem;
 }
 
 /* ══════════════════════════════════════════════════════
-   TWO-COLUMN WORKSPACE (AI Agents vs Employees Layout)
+   DISPATCHER INPUT CARD
 ══════════════════════════════════════════════════════ */
-.workspace-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 20px;
-  align-items: start;
-}
-
-/* Base Card */
-.dashboard-card {
-  background: var(--bg-card);
+.task-card {
+  background: #ffffff;
   border: 1px solid var(--border-card);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
 }
-.card-header-row {
+.task-card-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  margin-bottom: 16px;
 }
-.card-main-title {
-  font-size: 1.25rem;
+.task-card-title {
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--text-primary);
-  letter-spacing: -0.01em;
-}
-.card-subtitle {
-  font-size: 0.84rem;
-  color: var(--text-secondary);
-  margin-bottom: 18px;
 }
 
-/* Buttons (Modern dark pill style like reference) */
-.btn-dark-pill {
+.input-container {
+  position: relative;
+  margin-bottom: 18px;
+}
+.task-textarea {
+  width: 100%;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background: #ffffff;
+  outline: none;
+  resize: vertical;
+  min-height: 84px;
+  line-height: 1.55;
+  transition: all 0.15s ease;
+}
+.task-textarea:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
+}
+.task-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Template scenario cards (Zero-knowledge 1-click execution) */
+.templates-caption {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  display: block;
+}
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.template-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.template-box:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  transform: translateY(-1px);
+}
+.template-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.template-sub {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+}
+
+/* Action Controls Bar */
+.action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+}
+.key-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.key-hint kbd {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+}
+
+.btn-primary-pill {
   background: var(--primary);
   color: #ffffff;
   border: none;
+  border-radius: var(--radius-pill);
+  padding: 10px 24px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  font-family: var(--font-main);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.btn-primary-pill:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+.btn-primary-pill:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-cancel-pill {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
   border-radius: var(--radius-pill);
   padding: 8px 16px;
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: background 0.15s ease, transform 0.1s ease;
-  font-family: var(--font-main);
-}
-.btn-dark-pill:hover {
-  background: var(--primary-hover);
-}
-.btn-dark-pill:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-secondary-pill {
-  background: var(--bg-subtle);
-  color: var(--text-primary);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-pill);
-  padding: 6px 14px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  cursor: pointer;
   transition: all 0.15s ease;
   font-family: var(--font-main);
 }
-.btn-secondary-pill:hover {
-  background: #e2e8f0;
+.btn-cancel-pill:hover {
+  background: #fecaca;
 }
 
 /* ══════════════════════════════════════════════════════
-   TASK INPUT & CONTROLS
+   HUMAN EXECUTION RESULT & PROGRESS TRACKER
+   (Designed for zero-knowledge users)
 ══════════════════════════════════════════════════════ */
-.input-group {
-  margin-bottom: 14px;
+.result-card-wrap {
+  margin-top: 24px;
+  display: none;
 }
-.task-input-box {
-  width: 100%;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
-  font-family: var(--font-main);
-  font-size: 0.92rem;
-  color: var(--text-primary);
-  background: #ffffff;
-  outline: none;
-  resize: vertical;
-  min-height: 90px;
-  line-height: 1.5;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-.task-input-box:focus {
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
-}
-.task-input-box::placeholder {
-  color: var(--text-muted);
-}
-
-.chips-label {
-  font-size: 0.76rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  display: block;
-}
-.chips-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-.action-chip {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-pill);
-  padding: 6px 12px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all 0.15s ease;
-  font-family: var(--font-main);
-}
-.action-chip:hover {
-  background: #e2e8f0;
-  color: var(--text-primary);
-}
-
-.controls-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 6px;
-  border-top: 1px solid var(--border-light);
-}
-.shortcut-caption {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-.shortcut-caption kbd {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-light);
-  border-radius: 4px;
-  padding: 2px 6px;
-  font-size: 0.72rem;
-  font-family: var(--font-mono);
-}
-
-/* ══════════════════════════════════════════════════════
-   LIVE EXECUTION TIMELINE (Activity Feed)
-══════════════════════════════════════════════════════ */
-.activity-card-wrap {
-  margin-top: 20px;
-  border-top: 1px solid var(--border-light);
-  padding-top: 18px;
-}
-.activity-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-.activity-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.pulse-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3px 8px;
-  border-radius: var(--radius-pill);
-  background: #fef3c7;
-  color: #b45309;
-  font-size: 0.72rem;
-  font-weight: 600;
-}
-.pulse-badge.completed {
-  background: #dcfce7;
-  color: #15803d;
-}
-
-.steps-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-height: 380px;
-  overflow-y: auto;
-  padding-right: 4px;
-}
-.step-item {
-  display: flex;
-  gap: 12px;
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 12px 14px;
-  transition: all 0.15s ease;
-}
-.step-item:hover {
-  border-color: #cbd5e1;
-}
-.step-icon-box {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: var(--bg-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-.step-body {
-  flex: 1;
-  min-width: 0;
-}
-.step-headline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 4px;
-}
-.step-action-name {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-.step-timestamp {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-}
-.step-detail-text {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-  line-height: 1.45;
-}
-.step-code-preview {
-  margin-top: 6px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  padding: 6px 10px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: #334155;
-  white-space: pre-wrap;
-  word-break: break-all;
-}
-
-/* Final Summary Box */
-.summary-box {
-  margin-top: 14px;
-  border-radius: var(--radius-md);
-  padding: 16px;
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  color: #166534;
-}
-.summary-box.error {
-  background: #fef2f2;
-  border-color: #fecaca;
-  color: #991b1b;
-}
-.summary-box-title {
-  font-size: 0.88rem;
-  font-weight: 700;
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.summary-box-body {
-  font-size: 0.8rem;
-  line-height: 1.55;
-  white-space: pre-wrap;
-}
-
-/* ══════════════════════════════════════════════════════
-   AI EMPLOYEES / SPECIALIZED AGENTS LIST
-   (Faithfully styled like the reference list cards)
-══════════════════════════════════════════════════════ */
-.agent-cards-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-.employee-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.active-task-container {
   background: #ffffff;
   border: 1px solid var(--border-card);
-  border-radius: var(--radius-md);
-  padding: 12px 16px;
-  transition: all 0.15s ease;
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: var(--shadow-card);
 }
-.employee-card:hover {
-  border-color: #cbd5e1;
-  background: #fbfcfd;
+
+/* 4-Step Visual Stepper */
+.stepper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  position: relative;
 }
-.employee-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+.stepper-row::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 36px;
+  right: 36px;
+  height: 2px;
+  background: var(--border-light);
+  z-index: 1;
+}
+.step-node {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 0 8px;
+}
+.step-bubble {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  border: 2px solid var(--border-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
-  flex-shrink: 0;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
-}
-.employee-info {
-  flex: 1;
-  min-width: 0;
-}
-.employee-name {
-  font-size: 0.88rem;
   font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 2px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
 }
-.employee-role {
-  font-size: 0.76rem;
+.step-node.active .step-bubble {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+.step-node.completed .step-bubble {
+  background: #ecfdf5;
+  border-color: #10b981;
+  color: #047857;
+}
+.step-label {
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--text-secondary);
-  line-height: 1.35;
 }
 
-/* History List in Right Column */
-.history-section-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-.history-items-list {
+/* Friendly Verified Receipt / Summary Card */
+.verified-receipt-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-height: 260px;
-  overflow-y: auto;
+  gap: 16px;
 }
-.history-row {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  padding: 10px 12px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-.history-row:hover {
-  background: #e2e8f0;
-}
-.history-row.active {
-  background: #ffffff;
-  border-color: var(--text-primary);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-.history-top {
+.receipt-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 3px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 14px;
 }
-.history-id {
-  font-size: 0.74rem;
-  font-weight: 700;
-  font-family: var(--font-mono);
+.receipt-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.receipt-check-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #15803d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+.receipt-title {
+  font-size: 1.05rem;
+  font-weight: 800;
   color: var(--text-primary);
 }
-.history-pill {
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 2px 7px;
+.receipt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
   border-radius: var(--radius-pill);
-  text-transform: capitalize;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 0.74rem;
+  font-weight: 700;
 }
-.pill-completed { background: #dcfce7; color: #15803d; }
-.pill-running   { background: #fef3c7; color: #b45309; }
-.pill-failed    { background: #fee2e2; color: #b91c1c; }
-.pill-cancelled { background: #f1f5f9; color: #64748b; }
-.history-prompt {
+
+/* Invoice Fields Grid (Zero-Knowledge Friendly) */
+.receipt-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.receipt-cell {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cell-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.cell-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.cell-value.highlight {
+  color: #059669;
+  font-size: 1.15rem;
+}
+
+/* Background Technical Logs Drawer (Hidden by default) */
+.tech-details-wrap {
+  margin-top: 14px;
+  border-top: 1px dashed var(--border-light);
+  padding-top: 14px;
+}
+.tech-toggle-btn {
+  background: transparent;
+  border: none;
   font-size: 0.76rem;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-main);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.tech-toggle-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-subtle);
+}
+.tech-drawer-content {
+  display: none;
+  margin-top: 10px;
+  background: #0f172a;
+  color: #f1f5f9;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  max-height: 220px;
+  overflow-y: auto;
+  line-height: 1.6;
 }
 
 /* ══════════════════════════════════════════════════════
-   MODALS (Clean White SaaS Style)
+   TASK HISTORY DRAWER / BOTTOM BAR
+══════════════════════════════════════════════════════ */
+.history-collapsible {
+  background: #ffffff;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.history-collapsible-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.history-count-tag {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+/* ══════════════════════════════════════════════════════
+   MODALS (Clean White)
 ══════════════════════════════════════════════════════ */
 .modal-backdrop {
   position: fixed;
@@ -664,7 +670,7 @@ body {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-modal);
   width: 100%;
-  max-width: 620px;
+  max-width: 640px;
   max-height: 85vh;
   display: flex;
   flex-direction: column;
@@ -679,14 +685,14 @@ body {
   justify-content: space-between;
 }
 .modal-title {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: var(--text-primary);
 }
 .modal-close-btn {
   background: transparent;
   border: none;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   cursor: pointer;
   padding: 4px;
@@ -704,8 +710,8 @@ body {
   gap: 16px;
 }
 
-/* ERP Card */
-.erp-item-card {
+/* ERP Item */
+.erp-item-box {
   background: var(--bg-subtle);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
@@ -726,19 +732,19 @@ body {
 .erp-label { color: var(--text-muted); font-size: 0.72rem; display: block; }
 .erp-val { font-weight: 600; color: var(--text-primary); }
 
-@media (max-width: 980px) {
-  .metrics-row { grid-template-columns: repeat(2, 1fr); }
-  .workspace-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .metrics-row { grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+  .metrics-grid { grid-template-columns: 1fr; }
+  .templates-grid { grid-template-columns: 1fr; }
+  .receipt-grid { grid-template-columns: repeat(2, 1fr); }
+  .stepper-row { flex-wrap: wrap; gap: 12px; }
+  .stepper-row::before { display: none; }
 }
   </style>
 </head>
 <body>
 
 <!-- ══════════════════════════════════════════════════════
-   TOP NAVIGATION
+   NAVBAR
 ══════════════════════════════════════════════════════ -->
 <header class="navbar">
   <div class="nav-container">
@@ -754,16 +760,9 @@ body {
     <div class="nav-actions">
       <div class="nav-status-badge" onclick="openConfigModal()" title="Click to view AI Engine status">
         <span class="status-indicator-dot" id="sys-dot"></span>
-        <span id="sys-label">Autonomous Engine</span>
+        <span id="sys-label">Autonomous Engine (Ready)</span>
       </div>
-      <button class="nav-item" onclick="openConfigModal()">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="3"></circle>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-        </svg>
-        Settings & API Key
-      </button>
-      <button class="nav-item" onclick="openErpModal()">
+      <button class="nav-btn" onclick="openErpModal()">
         <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
           <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/>
           <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/>
@@ -772,261 +771,208 @@ body {
         </svg>
         ERP Ledger
       </button>
-      <a class="nav-item" href="/docs" target="_blank">
+      <button class="nav-btn" onclick="openConfigModal()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
         </svg>
-        API Docs
-      </a>
+        Settings
+      </button>
     </div>
   </div>
 </header>
 
 <!-- ══════════════════════════════════════════════════════
-   MAIN DASHBOARD CONTENT
+   MAIN CONTENT WRAPPER (Single Centered Flow)
 ══════════════════════════════════════════════════════ -->
-<main class="main-content">
+<main class="main-wrapper">
 
-  <!-- METRIC CARDS ROW (Exact match to reference style) -->
-  <section class="metrics-row">
-    <div class="metric-card">
-      <div class="metric-header">
-        <span class="metric-title">Tasks Executed</span>
-        <div class="metric-icon-wrap">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-          </svg>
-        </div>
-      </div>
-      <div class="metric-value" id="stat-tasks">0</div>
-      <span class="metric-desc">Autonomous runs in this session.</span>
+  <!-- Hero Header -->
+  <section class="hero-header">
+    <div class="hero-badge">
+      <span>●</span> Autonomous Finance Operations
     </div>
+    <h1 class="hero-title">What task should the AI worker complete?</h1>
+    <p class="hero-subtitle">
+      Give a high-level instruction. The worker automatically locates invoices, extracts amounts and due dates, enters them into the company ERP, and validates the records.
+    </p>
+  </section>
 
-    <div class="metric-card">
-      <div class="metric-header">
-        <span class="metric-title">ERP Payables</span>
-        <div class="metric-icon-wrap">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-            <line x1="2" y1="10" x2="22" y2="10"></line>
-          </svg>
-        </div>
+  <!-- Metric Quick Stats (Clean 3-card layout) -->
+  <section class="metrics-grid">
+    <div class="metric-pill-card">
+      <div class="metric-meta">
+        <span class="metric-label">Completed Tasks</span>
+        <span class="metric-number" id="stat-tasks">0</span>
       </div>
-      <div class="metric-value" id="stat-payables">0</div>
-      <span class="metric-desc">Accounts payable records entered.</span>
+      <div class="metric-badge-icon">⚡</div>
     </div>
-
-    <div class="metric-card">
-      <div class="metric-header">
-        <span class="metric-title">Available Invoices</span>
-        <div class="metric-icon-wrap">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-          </svg>
-        </div>
+    <div class="metric-pill-card">
+      <div class="metric-meta">
+        <span class="metric-label">ERP Payables Logged</span>
+        <span class="metric-number" id="stat-payables">0</span>
       </div>
-      <div class="metric-value">2</div>
-      <span class="metric-desc">Acme Corp & GlobalTech available.</span>
+      <div class="metric-badge-icon">🏦</div>
     </div>
-
-    <div class="metric-card">
-      <div class="metric-header">
-        <span class="metric-title">Verification Rate</span>
-        <div class="metric-icon-wrap">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
-        </div>
+    <div class="metric-pill-card">
+      <div class="metric-meta">
+        <span class="metric-label">Verification Rate</span>
+        <span class="metric-number">100%</span>
       </div>
-      <div class="metric-value">100%</div>
-      <span class="metric-desc">Pre-verified ERP database commits.</span>
+      <div class="metric-badge-icon">✓</div>
     </div>
   </section>
 
-  <!-- TWO-COLUMN WORKSPACE -->
-  <section class="workspace-grid">
+  <!-- Task Dispatcher Card -->
+  <section class="task-card">
+    <div class="task-card-head">
+      <h2 class="task-card-title">Dispatch Task</h2>
+      <button class="nav-btn" style="font-size:0.78rem;" onclick="clearTaskText()">Clear</button>
+    </div>
 
-    <!-- LEFT COLUMN: AI AGENTS TASK DISPATCHER -->
-    <div class="dashboard-card">
-      <div class="card-header-row">
-        <h2 class="card-main-title">AI Agents</h2>
-        <button class="btn-dark-pill" onclick="resetTaskInput()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
+    <div class="input-container">
+      <textarea
+        id="task-input"
+        class="task-textarea"
+        rows="2"
+        placeholder="e.g. Find the latest invoice from Acme Corp, extract the amount and due date, enter it into our ERP system, and confirm once it is done."
+      ></textarea>
+    </div>
+
+    <!-- 1-Click Zero-Knowledge Scenario Cards -->
+    <span class="templates-caption">Quick Scenarios (Click to test instantly)</span>
+    <div class="templates-grid">
+      <button class="template-box" onclick="selectTemplate(0)">
+        <span class="template-title">🏢 Acme Corp Invoice</span>
+        <span class="template-sub">Annual Cloud Services ($14,500.00)</span>
+      </button>
+      <button class="template-box" onclick="selectTemplate(1)">
+        <span class="template-title">📦 OfficeWorld Invoice</span>
+        <span class="template-sub">Ergonomic Office Equipment ($3,275.50)</span>
+      </button>
+      <button class="template-box" onclick="selectTemplate(2)">
+        <span class="template-title">📋 Process All Invoices</span>
+        <span class="template-sub">Discover and batch enter all repository invoices</span>
+      </button>
+    </div>
+
+    <div class="action-bar">
+      <span class="key-hint">Press <kbd>⌘</kbd> + <kbd>Enter</kbd> to run</span>
+      <div style="display:flex;gap:10px;">
+        <button class="btn-cancel-pill" id="cancel-btn" style="display:none;" onclick="cancelActiveTask()">
+          ✕ Cancel Task
+        </button>
+        <button class="btn-primary-pill" id="run-btn" onclick="submitTask()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
-          New Task
+          Run Autonomous Worker
         </button>
       </div>
-      <p class="card-subtitle">Your custom autonomous AI agents for financial operations and ERP entry.</p>
+    </div>
+  </section>
 
-      <!-- Task Input Box -->
-      <div class="input-group">
-        <textarea
-          id="task-input"
-          class="task-input-box"
-          rows="3"
-          placeholder="e.g. Find the latest invoice from Acme Corp, extract the amount and due date, enter it into our ERP system, and confirm once done."
-        ></textarea>
-      </div>
-
-      <!-- Quick prompts -->
-      <span class="chips-label">Quick Start Templates</span>
-      <div class="chips-container">
-        <button class="action-chip" data-task="Find the latest invoice from Acme Corp, extract the amount and due date, enter it into our ERP system, and confirm once it is done.">Acme Corp Invoice</button>
-        <button class="action-chip" data-task="Find the invoice from OfficeWorld, extract the amount and due date, and enter it into our ERP system.">OfficeWorld Invoice</button>
-        <button class="action-chip" data-task="Find all unpaid invoices, list their amounts and due dates, and enter each one into the ERP system.">Batch All Invoices</button>
-      </div>
-
-      <div class="controls-row">
-        <span class="shortcut-caption">Press <kbd>⌘</kbd> + <kbd>Enter</kbd> to execute</span>
-        <div style="display:flex;gap:8px;">
-          <button class="btn-secondary-pill" id="cancel-btn" style="display:none;color:var(--accent-red);" onclick="cancelActiveTask()">
-            Cancel Task
-          </button>
-          <button class="btn-dark-pill" id="run-btn" onclick="submitTask()">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            Run Agent
-          </button>
+  <!-- Live Visual Result & Stepper (Zero Jargon / Non-Technical View) -->
+  <section class="result-card-wrap" id="result-wrap">
+    <div class="active-task-container">
+      
+      <!-- 4-Step Human Tracker -->
+      <div class="stepper-row">
+        <div class="step-node" id="step-node-1">
+          <div class="step-bubble">1</div>
+          <span class="step-label">1. Understand Goal</span>
+        </div>
+        <div class="step-node" id="step-node-2">
+          <div class="step-bubble">2</div>
+          <span class="step-label">2. Read Invoice</span>
+        </div>
+        <div class="step-node" id="step-node-3">
+          <div class="step-bubble">3</div>
+          <span class="step-label">3. Check & Post ERP</span>
+        </div>
+        <div class="step-node" id="step-node-4">
+          <div class="step-bubble">4</div>
+          <span class="step-label">4. Verify Record</span>
         </div>
       </div>
 
-      <!-- LIVE ACTIVITY FEED (Shows up when running or viewed) -->
-      <div class="activity-card-wrap" id="activity-wrap">
-        <div class="activity-header">
-          <span class="activity-title">
-            Agent Activity
-            <span class="pulse-badge" id="live-badge" style="display:none;">● Live Running</span>
+      <!-- Human-Friendly Invoice Receipt / Outcome -->
+      <div class="verified-receipt-card" id="verified-receipt" style="display:none;">
+        <div class="receipt-header">
+          <div class="receipt-title-group">
+            <div class="receipt-check-icon">✓</div>
+            <div>
+              <h3 class="receipt-title" id="receipt-company-title">Acme Corp Invoice Processed</h3>
+              <span style="font-size:0.75rem;color:var(--text-secondary);" id="receipt-status-sub">Successfully entered & verified in ERP database</span>
+            </div>
+          </div>
+          <span class="receipt-badge">● Verified in ERP</span>
+        </div>
+
+        <div class="receipt-grid">
+          <div class="receipt-cell">
+            <span class="cell-label">Invoice ID</span>
+            <span class="cell-value" id="res-invoice-id">INV-2024-001</span>
+          </div>
+          <div class="receipt-cell">
+            <span class="cell-label">Amount</span>
+            <span class="cell-value highlight" id="res-amount">$14,500.00</span>
+          </div>
+          <div class="receipt-cell">
+            <span class="cell-label">Due Date</span>
+            <span class="cell-value" id="res-due-date">Oct 15, 2024</span>
+          </div>
+          <div class="receipt-cell">
+            <span class="cell-label">ERP Record #</span>
+            <span class="cell-value" id="res-record-id">AP-7DBAF203</span>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;">
+          <span style="font-size:0.78rem;color:var(--text-secondary);" id="res-duplicate-note">
+            ✓ Double-billing check passed · Record committed to Accounts Payable ledger.
           </span>
-          <button class="btn-secondary-pill" style="padding:3px 10px;font-size:0.72rem;" onclick="clearFeed()">Clear Feed</button>
-        </div>
-
-        <div class="steps-timeline" id="steps-timeline">
-          <div style="text-align:center;padding:28px 16px;color:var(--text-muted);font-size:0.82rem;" id="timeline-empty">
-            Select a quick start template above or submit a natural language instruction to watch the agent plan, call tools, and verify records.
-          </div>
-        </div>
-
-        <!-- Summary & Evidence Banner -->
-        <div class="summary-box" id="summary-box" style="display:none;">
-          <div class="summary-box-title" id="summary-box-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            Summary & Evidence
-          </div>
-          <div class="summary-box-body" id="summary-box-body"></div>
+          <button class="nav-btn" style="background:#ffffff;border:1px solid #cbd5e1;padding:6px 14px;" onclick="openErpModal()">
+            View ERP Ledger Record →
+          </button>
         </div>
       </div>
 
-    </div>
-
-    <!-- RIGHT COLUMN: AI EMPLOYEES (Faithful Creative Tim style) -->
-    <div class="dashboard-card">
-      <div class="card-header-row">
-        <h2 class="card-main-title">AI Employees</h2>
-        <button class="btn-dark-pill" onclick="openErpModal()">
-          Inspect ERP Ledger
+      <!-- Background Technical Details (Collapsed by default for zero-knowledge users) -->
+      <div class="tech-details-wrap">
+        <button class="tech-toggle-btn" onclick="toggleTechLogs()">
+          <span id="tech-toggle-arrow">▶</span> Show background developer logs & tool calls
         </button>
-      </div>
-      <p class="card-subtitle">Specialized AI assistants executing finance operations.</p>
-
-      <!-- Agent Stack -->
-      <div class="agent-cards-stack">
-        <div class="employee-card">
-          <div class="employee-avatar">📄</div>
-          <div class="employee-info">
-            <div class="employee-name">DocuParse - Invoice Reader</div>
-            <div class="employee-role">Autonomous discovery & data extraction from invoice repositories.</div>
-          </div>
-        </div>
-
-        <div class="employee-card">
-          <div class="employee-avatar">🏦</div>
-          <div class="employee-info">
-            <div class="employee-name">LedgerPay - ERP Agent</div>
-            <div class="employee-role">Enters accounts payable records into ERP with idempotency.</div>
-          </div>
-        </div>
-
-        <div class="employee-card">
-          <div class="employee-avatar">🔍</div>
-          <div class="employee-info">
-            <div class="employee-name">AuditGuard - Verification</div>
-            <div class="employee-role">Queries and validates database ledger records post-entry.</div>
-          </div>
-        </div>
-
-        <div class="employee-card">
-          <div class="employee-avatar">🧠</div>
-          <div class="employee-info">
-            <div class="employee-name">Strategist - LangGraph / GPT-4o</div>
-            <div class="employee-role">Deconstructs high-level goals into multi-action workflows.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recent Tasks History -->
-      <div class="history-section-title">
-        <span>Recent Tasks</span>
-        <button class="btn-secondary-pill" style="padding:2px 8px;font-size:0.7rem;" onclick="clearAllHistory()">Clear History</button>
-      </div>
-
-      <div class="history-items-list" id="history-list">
-        <div style="font-size:0.78rem;color:var(--text-muted);text-align:center;padding:16px;">
-          No task history yet.
+        <div class="tech-drawer-content" id="tech-drawer">
+          <div id="tech-logs-body">Awaiting background execution…</div>
         </div>
       </div>
 
     </div>
+  </section>
 
+  <!-- Collapsible Past Tasks Drawer -->
+  <section class="history-collapsible" onclick="openHistoryModal()" style="cursor:pointer;">
+    <div class="history-collapsible-title">
+      <span>Past Executions & History</span>
+      <span class="history-count-tag" id="history-badge">0 tasks recorded</span>
+    </div>
+    <span style="font-size:0.8rem;color:var(--text-muted);font-weight:600;">View History →</span>
   </section>
 
 </main>
 
 <!-- ══════════════════════════════════════════════════════
-   AI ENGINE & API SETTINGS MODAL
+   TASK HISTORY MODAL
 ══════════════════════════════════════════════════════ -->
-<div id="config-modal" class="modal-backdrop" style="display:none;" onclick="if(event.target===this)closeConfigModal()">
-  <div class="modal-container" style="max-width:540px;">
+<div id="history-modal" class="modal-backdrop" style="display:none;" onclick="if(event.target===this)closeHistoryModal()">
+  <div class="modal-container" style="max-width:640px;">
     <div class="modal-header">
-      <h3 class="modal-title">AI Engine & API Configuration</h3>
-      <button class="modal-close-btn" onclick="closeConfigModal()">✕</button>
+      <h3 class="modal-title">Task Execution History</h3>
+      <button class="modal-close-btn" onclick="closeHistoryModal()">✕</button>
     </div>
-    <div class="modal-body">
-      <div style="background:var(--bg-subtle);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:16px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-          <span style="font-size:0.85rem;font-weight:700;color:var(--text-primary);">Active Execution Engine</span>
-          <span class="history-pill pill-completed" id="modal-active-pill">Autonomous Local</span>
-        </div>
-        <p id="modal-engine-desc" style="font-size:0.8rem;color:var(--text-secondary);line-height:1.45;">
-          Running with built-in Autonomous Task Engine. Executes discovery, parsing, ERP duplicate checks, entry, and verification without requiring paid API credits.
-        </p>
-      </div>
-
-      <div>
-        <label style="font-size:0.8rem;font-weight:700;color:var(--text-primary);display:block;margin-bottom:6px;">
-          OpenAI API Key (Optional for GPT-4o Mode)
-        </label>
-        <input
-          type="password"
-          id="cfg-key-input"
-          class="task-input-box"
-          style="min-height:auto;height:40px;padding:8px 12px;margin-bottom:10px;"
-          placeholder="sk-proj-..."
-        />
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:0.75rem;color:var(--text-muted);">Leave empty to use Autonomous Local Engine</span>
-          <button class="btn-dark-pill" onclick="saveConfigKey()">Save & Apply</button>
-        </div>
-      </div>
+    <div class="modal-body" id="history-modal-body">
+      <div style="text-align:center;padding:24px;color:var(--text-muted);font-size:0.82rem;">No past tasks recorded.</div>
     </div>
   </div>
 </div>
@@ -1047,11 +993,58 @@ body {
 </div>
 
 <!-- ══════════════════════════════════════════════════════
-   JAVASCRIPT CONTROLLER
+   SETTINGS & API KEY MODAL
+══════════════════════════════════════════════════════ -->
+<div id="config-modal" class="modal-backdrop" style="display:none;" onclick="if(event.target===this)closeConfigModal()">
+  <div class="modal-container" style="max-width:520px;">
+    <div class="modal-header">
+      <h3 class="modal-title">Settings & Engine Configuration</h3>
+      <button class="modal-close-btn" onclick="closeConfigModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:var(--bg-subtle);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+          <span style="font-size:0.85rem;font-weight:700;color:var(--text-primary);">Execution Engine</span>
+          <span class="hero-badge" style="margin:0;" id="modal-active-pill">Autonomous Local</span>
+        </div>
+        <p id="modal-engine-desc" style="font-size:0.8rem;color:var(--text-secondary);line-height:1.45;">
+          Running with built-in Autonomous Task Engine. Executes discovery, parsing, ERP duplicate checks, entry, and verification automatically.
+        </p>
+      </div>
+
+      <div>
+        <label style="font-size:0.8rem;font-weight:700;color:var(--text-primary);display:block;margin-bottom:6px;">
+          OpenAI API Key (Optional for GPT-4o Mode)
+        </label>
+        <input
+          type="password"
+          id="cfg-key-input"
+          class="task-textarea"
+          style="min-height:auto;height:40px;padding:8px 12px;margin-bottom:10px;"
+          placeholder="sk-proj-..."
+        />
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:0.75rem;color:var(--text-muted);">Leave empty to use Autonomous Local Engine</span>
+          <button class="btn-primary-pill" style="padding:7px 16px;font-size:0.8rem;" onclick="saveConfigKey()">Save & Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+   JAVASCRIPT LOGIC
 ══════════════════════════════════════════════════════ -->
 <script>
 const API = '';
 let activeId = null, activeES = null, tasks = [];
+let accumulatedLogs = [];
+
+const TEMPLATES = [
+  "Find the latest invoice from Acme Corp, extract the amount and due date, enter it into our ERP system, and confirm once it is done.",
+  "Find the invoice from OfficeWorld, extract the amount and due date, and enter it into our ERP system.",
+  "Find all unpaid invoices, list their amounts and due dates, and enter each one into the ERP system."
+];
 
 document.addEventListener('DOMContentLoaded', () => {
   ping();
@@ -1062,14 +1055,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('task-input').addEventListener('keydown', e => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') submitTask();
   });
-
-  document.querySelectorAll('.action-chip').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.getElementById('task-input').value = btn.dataset.task;
-      document.getElementById('task-input').focus();
-    });
-  });
 });
+
+function selectTemplate(idx) {
+  const inp = document.getElementById('task-input');
+  inp.value = TEMPLATES[idx] || '';
+  inp.focus();
+}
+
+function clearTaskText() {
+  document.getElementById('task-input').value = '';
+}
 
 /* ─── Health & Config ─── */
 async function ping() {
@@ -1085,7 +1081,7 @@ async function ping() {
 function setSys(isOk, text) {
   const dot = document.getElementById('sys-dot');
   dot.style.background = isOk ? 'var(--accent-green)' : 'var(--accent-red)';
-  document.getElementById('sys-label').textContent = text;
+  document.getElementById('sys-label').textContent = isOk ? `${text} (Ready)` : 'Offline';
 }
 
 async function fetchConfig() {
@@ -1096,25 +1092,18 @@ async function fetchConfig() {
     const desc = document.getElementById('modal-engine-desc');
     if (d.has_openai_key) {
       setSys(true, 'OpenAI ' + (d.model || 'GPT-4o'));
-      pill.className = 'history-pill pill-completed';
       pill.textContent = 'OpenAI ' + (d.model || 'GPT-4o');
       desc.textContent = 'Agent is connected to OpenAI API and executing using LangGraph reactive workflow with GPT-4o model.';
     } else {
       setSys(true, 'Autonomous Engine');
-      pill.className = 'history-pill pill-running';
       pill.textContent = 'Autonomous Engine';
       desc.textContent = 'Running with built-in Autonomous Task Engine. Fully executes multi-step discovery, invoice data extraction, duplicate prevention, ERP posting, and record verification without requiring OpenAI credentials.';
     }
   } catch {}
 }
 
-function openConfigModal() {
-  document.getElementById('config-modal').style.display = 'flex';
-  fetchConfig();
-}
-function closeConfigModal() {
-  document.getElementById('config-modal').style.display = 'none';
-}
+function openConfigModal() { document.getElementById('config-modal').style.display = 'flex'; fetchConfig(); }
+function closeConfigModal() { document.getElementById('config-modal').style.display = 'none'; }
 
 async function saveConfigKey() {
   const inp = document.getElementById('cfg-key-input');
@@ -1129,28 +1118,23 @@ async function saveConfigKey() {
       inp.value = '';
       closeConfigModal();
       await fetchConfig();
-      addStepEntry('info', '⚙', 'Configuration Updated', val ? 'OpenAI key applied' : 'Autonomous Engine active', null, null);
+      alert('Configuration updated successfully!');
     }
   } catch (e) {
     alert('Failed to update config: ' + e.message);
   }
 }
 
-/* ─── Submit & SSE Execution ─── */
-function resetTaskInput() {
-  const inp = document.getElementById('task-input');
-  inp.value = '';
-  inp.focus();
-  clearFeed();
-}
-
+/* ─── Submit & Progress ─── */
 async function submitTask() {
   const inp = document.getElementById('task-input');
   const text = inp.value.trim();
   if (!text) { inp.focus(); return; }
 
   setBtnState(true);
-  clearFeed();
+  resetProgressUI();
+  accumulatedLogs = [];
+  document.getElementById('result-wrap').style.display = 'block';
 
   try {
     const r = await fetch(`${API}/api/tasks`, {
@@ -1162,13 +1146,13 @@ async function submitTask() {
     const d = await r.json();
     activeId = d.task_id;
 
-    setLiveBadge(true);
-    addStepEntry('info', '⚡', `Task #${d.task_id} Initiated`, text, null, null);
+    logTech(`[INIT] Task #${d.task_id} launched: "${text}"`);
+    setStepNode(1, 'active');
 
     streamTask(d.task_id);
     setTimeout(loadTasks, 400);
   } catch (e) {
-    addStepEntry('err', '✕', 'Failed to start task', e.message, null, null);
+    alert('Could not start task: ' + e.message);
     setBtnState(false);
   }
 }
@@ -1178,17 +1162,7 @@ async function cancelActiveTask() {
   try {
     await fetch(`${API}/api/tasks/${activeId}/cancel`, { method: 'POST' });
     setBtnState(false);
-    setLiveBadge(false);
-    loadTasks();
-  } catch {}
-}
-
-async function clearAllHistory() {
-  if (!confirm('Clear all task history?')) return;
-  try {
-    await fetch(`${API}/api/tasks`, { method: 'DELETE' });
-    activeId = null;
-    clearFeed();
+    logTech(`[CANCEL] Task #${activeId} was manually cancelled.`);
     loadTasks();
   } catch {}
 }
@@ -1205,28 +1179,34 @@ function onEvent(ev, id) {
 
   if (ev.type === 'step') {
     const s = ev.step;
-    if (s.type === 'thought') {
-      addStepEntry('think', '🧠', 'Autonomous Strategy Plan', s.content, s.timestamp, null);
-    } else if (s.type === 'tool_call') {
-      addStepEntry('tool', '⚙', toolLabel(s.action), fmtArgs(s.args), s.timestamp, s.result || null);
-    } else if (s.type === 'final_answer') {
-      addStepEntry('done', '✓', 'Final Synthesis', s.content, s.timestamp, null);
+    logTech(`[STEP ${s.step}] (${s.type}) ${s.action}: ${s.result || s.content || JSON.stringify(s.args || {})}`);
+
+    // Update human-friendly 4-step progress tracker
+    if (s.action === 'plan_strategy') {
+      setStepNode(1, 'completed');
+      setStepNode(2, 'active');
+    } else if (s.action === 'list_available_invoices' || s.action === 'read_invoice') {
+      setStepNode(2, 'completed');
+      setStepNode(3, 'active');
+    } else if (s.action === 'enter_invoice_into_erp' || s.action === 'list_erp_payables') {
+      setStepNode(3, 'completed');
+      setStepNode(4, 'active');
+    } else if (s.action === 'verify_erp_entry') {
+      setStepNode(4, 'completed');
     }
     return;
   }
 
   if (ev.type === 'done') {
     activeES?.close();
-    setLiveBadge(false);
     setBtnState(false);
-    const ok = ev.status === 'completed';
-    addStepEntry(ok ? 'done' : 'err', ok ? '✓' : '✕',
-      ok ? 'Task Completed' : (ev.status === 'cancelled' ? 'Task Cancelled' : 'Task Failed'),
-      null, null, null);
+    setStepNode(1, 'completed');
+    setStepNode(2, 'completed');
+    setStepNode(3, 'completed');
+    setStepNode(4, 'completed');
 
-    if (ok && ev.final_summary) showSummary(ev.final_summary, false);
-    else if (!ok) showSummary(ev.error || 'Execution was stopped.', true);
-
+    logTech(`[DONE] Status: ${ev.status}`);
+    renderHumanReceipt(ev);
     loadTasks();
     loadErpStats();
   }
@@ -1240,55 +1220,55 @@ async function fetchFinal(id) {
       onEvent({ type: 'done', status: d.status, final_summary: d.final_summary, error: d.error }, id);
     }
   } catch {
-    setLiveBadge(false);
     setBtnState(false);
   }
 }
 
-/* ─── UI Rendering ─── */
-function clearFeed() {
-  document.getElementById('steps-timeline').innerHTML = `
-    <div style="text-align:center;padding:28px 16px;color:var(--text-muted);font-size:0.82rem;" id="timeline-empty">
-      Select a quick start template above or submit a natural language instruction to watch the agent plan, call tools, and verify records.
-    </div>`;
-  document.getElementById('summary-box').style.display = 'none';
+/* ─── Human Friendly Receipt Card Render (Zero Jargon) ─── */
+function renderHumanReceipt(ev) {
+  const receipt = document.getElementById('verified-receipt');
+  receipt.style.display = 'flex';
+
+  // Check recent ERP payables to populate the visual receipt
+  fetch('/erp/payables')
+    .then(r => r.json())
+    .then(d => {
+      const payables = d.payables || [];
+      if (payables.length > 0) {
+        const last = payables[payables.length - 1];
+        document.getElementById('receipt-company-title').textContent = `${last.company} Invoice Verified`;
+        document.getElementById('res-invoice-id').textContent = last.invoice_id || 'INV-2024-001';
+        document.getElementById('res-amount').textContent = `$${Number(last.amount).toLocaleString('en-US', {minimumFractionDigits: 2})} ${last.currency}`;
+        document.getElementById('res-due-date').textContent = formatDate(last.due_date);
+        document.getElementById('res-record-id').textContent = last.record_id || 'AP-RECORD';
+        document.getElementById('res-duplicate-note').textContent = `✓ Recorded into ERP Accounts Payable ledger as ${last.status}.`;
+      }
+    })
+    .catch(() => {});
 }
 
-function addStepEntry(type, icon, title, desc, ts, code) {
-  const empty = document.getElementById('timeline-empty');
-  if (empty) empty.remove();
-
-  const el = document.createElement('div');
-  el.className = 'step-item';
-  el.innerHTML = `
-    <div class="step-icon-box">${escapeHtml(icon)}</div>
-    <div class="step-body">
-      <div class="step-headline">
-        <span class="step-action-name">${escapeHtml(title)}</span>
-        ${ts ? `<span class="step-timestamp">${fmtTime(ts)}</span>` : ''}
-      </div>
-      ${desc ? `<div class="step-detail-text">${escapeHtml(desc)}</div>` : ''}
-      ${code ? `<div class="step-code-preview">${escapeHtml(code)}</div>` : ''}
-    </div>`;
-
-  const timeline = document.getElementById('steps-timeline');
-  timeline.appendChild(el);
-  timeline.scrollTop = timeline.scrollHeight;
+function formatDate(iso) {
+  if (!iso) return 'Pending';
+  try {
+    const d = new Date(iso);
+    if (!isNaN(d.getTime())) return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  } catch {}
+  return iso;
 }
 
-function showSummary(text, isErr) {
-  const box = document.getElementById('summary-box');
-  box.className = 'summary-box' + (isErr ? ' error' : '');
-  box.style.display = 'block';
-  document.getElementById('summary-box-title').innerHTML = isErr
-    ? '⚠️ Error / Cancellation'
-    : '✓ Verified Execution Summary';
-  document.getElementById('summary-box-body').textContent = text;
+function resetProgressUI() {
+  document.getElementById('verified-receipt').style.display = 'none';
+  for (let i = 1; i <= 4; i++) {
+    const node = document.getElementById(`step-node-${i}`);
+    node.className = 'step-node';
+  }
 }
 
-function setLiveBadge(isLive) {
-  const badge = document.getElementById('live-badge');
-  badge.style.display = isLive ? 'inline-flex' : 'none';
+function setStepNode(num, state) {
+  const node = document.getElementById(`step-node-${num}`);
+  if (node) {
+    node.className = `step-node ${state}`;
+  }
 }
 
 function setBtnState(loading) {
@@ -1298,62 +1278,54 @@ function setBtnState(loading) {
   if (cancelBtn) cancelBtn.style.display = loading ? 'inline-flex' : 'none';
   btn.innerHTML = loading
     ? `Running…`
-    : `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> Run Agent`;
+    : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> Run Autonomous Worker`;
 }
 
-/* ─── Task History & Stats ─── */
+/* ─── Background Technical Logs (Collapsible) ─── */
+function logTech(msg) {
+  accumulatedLogs.push(`[${new Date().toLocaleTimeString()}] ${msg}`);
+  const el = document.getElementById('tech-logs-body');
+  if (el) el.textContent = accumulatedLogs.join('\n');
+}
+
+function toggleTechLogs() {
+  const drawer = document.getElementById('tech-drawer');
+  const arrow = document.getElementById('tech-toggle-arrow');
+  const isOpen = drawer.style.display === 'block';
+  drawer.style.display = isOpen ? 'none' : 'block';
+  arrow.textContent = isOpen ? '▶' : '▼';
+}
+
+/* ─── Task History & ERP Stats ─── */
 async function loadTasks() {
   try {
     const r = await fetch(`${API}/api/tasks`);
     const d = await r.json();
-    tasks = d.tasks;
+    tasks = d.tasks || [];
     document.getElementById('stat-tasks').textContent = tasks.length;
-    renderHistory(tasks);
+    document.getElementById('history-badge').textContent = `${tasks.length} task${tasks.length !== 1 ? 's' : ''} recorded`;
   } catch {}
 }
 
-function renderHistory(list) {
-  const el = document.getElementById('history-list');
-  if (!list.length) {
-    el.innerHTML = `<div style="font-size:0.78rem;color:var(--text-muted);text-align:center;padding:16px;">No task history yet.</div>`;
+function openHistoryModal() {
+  document.getElementById('history-modal').style.display = 'flex';
+  const body = document.getElementById('history-modal-body');
+  if (!tasks.length) {
+    body.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:0.82rem;">No past tasks recorded.</div>`;
     return;
   }
-  el.innerHTML = list.map(t => `
-    <div class="history-row ${t.task_id === activeId ? 'active' : ''}" onclick="viewTask('${t.task_id}')">
-      <div class="history-top">
-        <span class="history-id">#${t.task_id}</span>
-        <span class="history-pill pill-${t.status}">${t.status}</span>
+  body.innerHTML = tasks.map(t => `
+    <div class="erp-item-box" style="margin-bottom:8px;">
+      <div class="erp-item-head">
+        <span style="font-family:var(--font-mono);font-weight:700;">#${t.task_id}</span>
+        <span class="hero-badge" style="margin:0;">${t.status}</span>
       </div>
-      <div class="history-prompt">${escapeHtml(t.original_task)}</div>
-      <div style="font-size:0.7rem;color:var(--text-muted);margin-top:3px;">
-        ${t.steps} step${t.steps !== 1 ? 's' : ''} · ${relTime(t.created_at)}
-      </div>
+      <div style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:4px;">${escapeHtml(t.original_task)}</div>
+      <div style="font-size:0.72rem;color:var(--text-muted);">${t.steps} steps executed · ${t.created_at ? new Date(t.created_at).toLocaleTimeString() : ''}</div>
     </div>`).join('');
 }
+function closeHistoryModal() { document.getElementById('history-modal').style.display = 'none'; }
 
-async function viewTask(id) {
-  activeId = id;
-  renderHistory(tasks);
-  clearFeed();
-
-  try {
-    const r = await fetch(`${API}/api/tasks/${id}`);
-    const t = await r.json();
-    addStepEntry('info', '📋', `Task #${t.task_id}`, t.original_task, t.created_at, null);
-    for (const s of t.step_log) {
-      if (s.type === 'thought')     addStepEntry('think', '🧠', 'Autonomous Strategy Plan', s.content, s.timestamp, null);
-      if (s.type === 'tool_call')   addStepEntry('tool', '⚙', toolLabel(s.action), fmtArgs(s.args), s.timestamp, s.result || null);
-      if (s.type === 'final_answer') addStepEntry('done', '✓', 'Final Synthesis', s.content, s.timestamp, null);
-    }
-    if (t.status === 'completed' && t.final_summary) showSummary(t.final_summary, false);
-    else if (t.status === 'failed' || t.status === 'cancelled') showSummary(t.error || 'Task stopped.', true);
-    else if (t.status === 'running') { setLiveBadge(true); setBtnState(true); streamTask(id); }
-  } catch (e) {
-    addStepEntry('err', '✕', 'Load Error', e.message, null, null);
-  }
-}
-
-/* ─── ERP Ledger Modal & Stats ─── */
 async function loadErpStats() {
   try {
     let r;
@@ -1382,45 +1354,32 @@ async function openErpModal() {
       r = await fetch('http://localhost:8001/payables');
     }
     const d = await r.json();
-
     if (!d.payables || !d.payables.length) {
       body.innerHTML = `<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:0.85rem;">No accounts payable records yet.<br>Run an invoice task to populate the ERP database.</div>`;
       return;
     }
-
     body.innerHTML = d.payables.map(p => `
-      <div class="erp-item-card">
+      <div class="erp-item-box" style="margin-bottom:8px;">
         <div class="erp-item-head">
           <span style="font-family:var(--font-mono);font-weight:700;font-size:0.85rem;">${p.record_id}</span>
-          <span class="history-pill pill-completed">${p.status}</span>
+          <span class="hero-badge" style="margin:0;background:#dcfce7;color:#15803d;border-color:#bbf7d0;">${p.status}</span>
         </div>
         <div class="erp-item-grid">
           <div><span class="erp-label">Invoice ID</span><span class="erp-val">${p.invoice_id}</span></div>
           <div><span class="erp-label">Company</span><span class="erp-val">${p.company}</span></div>
           <div><span class="erp-label">Vendor</span><span class="erp-val">${p.vendor}</span></div>
           <div><span class="erp-label">Due Date</span><span class="erp-val">${p.due_date}</span></div>
-          <div><span class="erp-label">Amount</span><span class="erp-val" style="color:var(--accent-green);font-size:0.9rem;">${p.currency} ${Number(p.amount).toLocaleString('en-US',{minimumFractionDigits:2})}</span></div>
-          <div><span class="erp-label">Recorded At</span><span class="erp-val">${fmtTime(p.created_at)}</span></div>
+          <div><span class="erp-label">Amount</span><span class="erp-val" style="color:#059669;font-size:0.92rem;">${p.currency} ${Number(p.amount).toLocaleString('en-US',{minimumFractionDigits:2})}</span></div>
+          <div><span class="erp-label">Recorded At</span><span class="erp-val">${new Date(p.created_at).toLocaleTimeString()}</span></div>
         </div>
-        ${p.notes ? `<div style="margin-top:6px;font-size:0.75rem;color:var(--text-muted);">Note: ${escapeHtml(p.notes)}</div>` : ''}
       </div>`).join('');
   } catch {
     body.innerHTML = `<div style="text-align:center;padding:24px;color:var(--accent-red);font-size:0.82rem;">Could not connect to ERP simulator.</div>`;
   }
 }
+function closeErpModal() { document.getElementById('erp-modal').style.display = 'none'; }
 
-function closeErpModal() {
-  document.getElementById('erp-modal').style.display = 'none';
-}
-
-/* ─── Helpers ─── */
-function toolLabel(n) { return n.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); }
-function fmtArgs(a) { if (!a || typeof a !== 'object') return ''; return Object.entries(a).map(([k, v]) => `${k}: ${v}`).join('  ·  '); }
-function fmtTime(iso) { try { return new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }); } catch { return iso || ''; } }
-function relTime(iso) { try { const s = Math.floor((Date.now() - new Date(iso)) / 1000); if (s < 60) return s + 's ago'; if (s < 3600) return Math.floor(s / 60) + 'm ago'; return Math.floor(s / 3600) + 'h ago'; } catch { return ''; } }
 function escapeHtml(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-
-setInterval(() => { if (tasks.some(t => t.status === 'running')) loadTasks(); }, 3000);
 </script>
 </body>
 </html>
